@@ -1,7 +1,7 @@
-name: docker-compose
-description: A generated Helm Chart for docker-compose from Skippbox Kompose
+name: librenms-jari
+description: A generated Helm Chart from jarischaefer/docker-librenms
 version: 0.0.1
 keywords:
-  - docker-compose
+  - nms
 sources:
 home:
