@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - env:
+        - name: APP_KEY
+          value: REPLACE-WITH-GENERATED-KEY
+        - name: BASE_URL
+          value: http://localhost
+        - name: DB_HOST
+          value: db
+        - name: DB_NAME
+          value: librenms
+        - name: DB_PASS
+          value: secret
+        - name: DB_USER
+          value: librenms
+        - name: POLLERS
+          value: "16"
+        image: jarischaefer/docker-librenms
+        name: web
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/librenms/logs
+          name: web-claim0
+        - mountPath: /opt/librenms/rrd
+          name: web-claim1
+      hostname: librenms
+      restartPolicy: Always
+      volumes:
+      - name: web-claim0
+        persistentVolumeClaim:
+          claimName: web-claim0
+      - name: web-claim1
+        persistentVolumeClaim:
+          claimName: web-claim1
+status: {}
