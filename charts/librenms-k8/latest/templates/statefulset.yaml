@@ -86,10 +86,6 @@ spec:
           # mountPath: /etc/nginx/ssl
         - mountPath: /opt/librenms/conf.d
           name: librenms-conf
-        resources:
-          requests:
-            cpu: 500m
-            memory: 1Gi
         readinessProbe:
           tcpSocket:
             port: 80
@@ -109,11 +105,11 @@ spec:
               path: interfaces.php
             - key: config-influx-php
               path: influx.php
-  volumeClaimTemplates:
-  - metadata:
-      name: librenms-logs
-  - metadata:
-      name: librenms-rrd
+persistentVolumeClaim:
+          claimName: librenms-logs
+persistentVolumeClaim:
+          claimName: librenms-rrd
+
 
   # - metadata:
       # name: libressl
