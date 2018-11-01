@@ -1,7 +1,0 @@
-name: librenms-jari
-description: A generated Helm Chart from jarischaefer/docker-librenms
-version: 0.0.1
-keywords:
-  - nms
-sources:
-home:
