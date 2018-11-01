@@ -112,18 +112,9 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: librenms-logs
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 2Gi
   - metadata:
       name: librenms-rrd
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 2Gi
+
   # - metadata:
       # name: libressl
     # spec:
